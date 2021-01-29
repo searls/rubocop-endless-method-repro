@@ -1,12 +1,16 @@
 # Rubocop and endless methods
 
-Running:
+It appears that Rubocop will attempt to correct single-line methods into endless
+methods even when versions of Ruby that don't support it (tested running 2.4.10
+and 2.7.2)
+
+Running these versions (first discovered on Rubocop 1.8.1):
 
 ```
 $ ruby -v
 ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin20]
 $ rubocop -v
-1.8.1
+1.9.0
 ```
 
 And executing this:
@@ -30,7 +34,7 @@ wat.rb:1:8: C: [Corrected] Layout/SpaceAfterSemicolon: Space missing after semic
 def Foo;'hi'end
        ^
 wat.rb:1:11: E: Lint/Syntax: unexpected token tEQL
-(Using Ruby 2.4 parser; configure using TargetRubyVersion parameter, under AllCops)
+(Using Ruby 2.7 parser; configure using TargetRubyVersion parameter, under AllCops)
 def Foo() = 'hi'
           ^
 
